@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+
+  tlc:
+    container_name: tlc_cont
+    build: .
+    environment:
+      - UDEV=1
+      - DJANGO_SETTINGS_MODULE=tlc_ms_manager.settings
+    restart: always
+    privileged: true
+    volumes:
+      - ./:/src # Map ./app directory en docker app folder
+      - /dev:/dev
+    ports:
+      - 8000:8000
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"

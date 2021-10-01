@@ -1,7 +1,9 @@
 FROM python:3
-RUN mkdir /code
-WORKDIR /code
-COPY requirements.txt
+MAINTAINER Lucas M. Sing
+
+RUN mkdir /src
+WORKDIR /src
+COPY ./ /src
+
 RUN pip install -r requirements.txt
-COPY . .
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "app.wsgi"]
+
